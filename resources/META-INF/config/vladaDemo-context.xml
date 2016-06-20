@@ -18,7 +18,11 @@
 
 	<!-- Property file used for value substitution -->
 	<context:property-placeholder location="classpath:application.properties" />
-
+	
+	<bean id="fileDao" class="com.demo.vlada.dao.impl.FileDaoImpl"></bean>
+	
+	<bean id="fileService" class="com.demo.vlada.services.FileService"></bean>
+	
 	<bean id="properties"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations" value="classpath:application.properties"></property>
