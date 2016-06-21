@@ -10,9 +10,9 @@
 
 <body>
     <!-- NAV -->
-    <div class="clearfix" ng-include="views/includes/nav.html"></div>
+    <div ng-include="'views/includes/nav.html'"></div>
     <!-- NG view -->
-    <div ng-view></div>
+    <div ng-view id="content-main_box"></div>
     <!-- JS libs -->
     <script src="scripts/lib/angular.js"></script>
     <script src="scripts/lib/jquery-2.2.4.js"></script>
@@ -20,6 +20,8 @@
     <script src="scripts/lib/route-styles.js"></script>
     <script src="scripts/lib/angular-route.js"></script>
     <script src="scripts/lib/bootstrap.min.js"></script>
+    <script src="scripts/lib/ace/build/src/ace.js"></script>
+    <script src="scripts/lib/ui-ace.js"></script>
     <!-- App files -->
     <script src="scripts/app.js"></script>
     <!-- Controllers -->

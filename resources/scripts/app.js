@@ -14,6 +14,7 @@ angular
       'ngRoute',
       'routeStyles',
       'ngTable',
+      'ui.ace'
    ])
    .config(function($routeProvider, $locationProvider, $httpProvider) {
       $routeProvider
