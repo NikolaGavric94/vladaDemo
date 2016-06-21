@@ -3,14 +3,12 @@
 
    angular.module('DynFiles').controller('HomeCtrl', ['$scope',
       function($scope) {
+         var vm = this;
 
-         function init() {
+         function init() {}
 
-            console.log('HomeController');
-         }
-
-         casesCtrl.init();
-
+         /*----------  Construct  ----------*/
+         init();
       }
    ])
 })();
