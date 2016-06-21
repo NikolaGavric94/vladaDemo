@@ -20,4 +20,16 @@ public class FileService {
 	public List<FileE> getFiles() {
 		return fileDao.getFiles();
 	}
+	
+	public FileE getFileById(Integer id) {
+		return fileDao.getFileById(id);
+	}
+	
+	public Boolean isFile(FileE file) {
+		return fileDao.isFile(file);
+	}
+	
+	public void remove(FileE file) {
+		fileDao.remove(file);
+	}
 }
