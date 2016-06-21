@@ -1,10 +1,8 @@
 package com.demo.vlada.dto;
 
-import com.demo.vlada.entities.FileE;
-
 public class FileEDto {
 	private Float grossSalary;
-	private FileE file;
+	private Integer fileId;
 	
 	public Float getGrossSalary() {
 		return grossSalary;
@@ -12,10 +10,10 @@ public class FileEDto {
 	public void setGrossSalary(Float grossSalary) {
 		this.grossSalary = grossSalary;
 	}
-	public FileE getFile() {
-		return file;
+	public Integer getFileId() {
+		return fileId;
 	}
-	public void setFile(FileE file) {
-		this.file = file;
+	public void setFileId(Integer fileId) {
+		this.fileId = fileId;
 	}
 }
