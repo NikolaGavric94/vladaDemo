@@ -31,7 +31,7 @@ public class IndexController {
 	@Autowired
 	private Environment env;
 	
-	@RequestMapping(method=RequestMethod.GET, produces="application/json; charset=UTF-8")
+	@RequestMapping(value="/files", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public ResponseEntity<List<FileE>> allFiles() {
 		return new ResponseEntity<List<FileE>>(fileService.getFiles(), HttpStatus.OK);
 	}
