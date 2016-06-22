@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -31,7 +33,7 @@ public class IndexController {
 	@Autowired
 	private FileService fileService;
 	
-	@Autowired
+	@Resource
 	private Environment env;
 	
 	@RequestMapping(value="/files", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
@@ -89,7 +91,7 @@ public class IndexController {
 		try {
             String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
-            BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File(env.getProperty("upload.path")+fileName)));
+            BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File("C:/Work/Projects/VladaDemo/"+fileName)));
             buffStream.write(bytes);
             buffStream.close();
             return new ResponseEntity<Response>(new Response("You have successfully uploaded " + fileName), HttpStatus.OK);
