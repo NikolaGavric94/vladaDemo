@@ -1,3 +1,27 @@
+#content-main_box {
+  padding-top: 51px;
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute; }
 
+/*=================================
+=            Home page            =
+=================================*/
+#home {
+  height: 100%;
+  padding: 15px 15px 0; }
+  #home .home-col-options {
+    width: 150px; }
+  #home-editor {
+    height: 100%; }
+    #home-editor .ace_editor {
+      height: 95%;
+      width: 100%; }
+    #home-editor-button {
+      height: 5%;
+      padding-top: 8px; }
+
+/*=====  End of Home page  ======*/
 
 /*# sourceMappingURL=main.css.map */
