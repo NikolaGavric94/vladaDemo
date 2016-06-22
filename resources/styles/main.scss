@@ -41,10 +41,27 @@
     padding: 15px 15px 0;
     &-options {
         &-selected_file {
-            background: #e2e2e2;
-            padding: 5px 9px;
+            padding: 0 5px;
             border-radius: 4px;
             color: #777;
+        }
+        &-result {
+            margin-top: 18px;
+        }
+    }
+    &-list {
+        .calculate-list-item {
+            cursor: pointer;
+            .calculate-list-item-arrow {
+                display: none;
+                float: right;
+            }
+            &.active td {
+                background: rgba(51, 122, 183, 0.31);
+                .calculate-list-item-arrow {
+                    display: block;
+                }
+            }
         }
     }
 }

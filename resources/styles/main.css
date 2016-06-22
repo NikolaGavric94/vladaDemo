@@ -28,10 +28,20 @@
 #calculate {
   padding: 15px 15px 0; }
   #calculate-options-selected_file {
-    background: #e2e2e2;
-    padding: 5px 9px;
+    padding: 0 5px;
     border-radius: 4px;
     color: #777; }
+  #calculate-options-result {
+    margin-top: 18px; }
+  #calculate-list .calculate-list-item {
+    cursor: pointer; }
+    #calculate-list .calculate-list-item .calculate-list-item-arrow {
+      display: none;
+      float: right; }
+    #calculate-list .calculate-list-item.active td {
+      background: rgba(51, 122, 183, 0.31); }
+      #calculate-list .calculate-list-item.active td .calculate-list-item-arrow {
+        display: block; }
 
 /*=====  End of Calculate  ======*/
 /*===============================
