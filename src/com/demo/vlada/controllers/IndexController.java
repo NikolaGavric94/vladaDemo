@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,9 +50,9 @@ public class IndexController {
 		return new ResponseEntity<Response>(new Response(UtilHelper.executeTextArea(text)), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/executeFiles", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public ResponseEntity<Response> executeFiles(@RequestBody FileE recFile) {
-		FileE file = fileService.getFileById(recFile.getId());
+	@RequestMapping(value="/executeFile/{id}", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	public ResponseEntity<Response> executeFiles(@PathVariable(value="id") Integer fileId) {
+		FileE file = fileService.getFileById(fileId);
 		return new ResponseEntity<Response>(new Response(UtilHelper.executeFiles(file)), HttpStatus.OK);
 	}
 	
@@ -77,8 +78,8 @@ public class IndexController {
 		return new ResponseEntity<Response>(new Response("File successfully updated."), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/deleteFile", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public ResponseEntity<Response> deleteFile(@RequestBody Integer fileId) {
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
+	public ResponseEntity<Response> deleteFile(@PathVariable(value="id") Integer fileId) {
 		FileE file = fileService.getFileById(fileId);
 		fileService.remove(file);
 		return new ResponseEntity<Response>(new Response("File successfully removed."), HttpStatus.OK);
