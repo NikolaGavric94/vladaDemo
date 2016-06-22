@@ -1,14 +1,3 @@
-'use strict';
-
-/**
- * @ngdoc overview
- * @name smashApp
- * @description
- * # smashApp
- *
- * Main module of the application.
- */
-
 angular
    .module('DynFiles', [
       'ngRoute',
@@ -29,6 +18,14 @@ angular
             controller: 'HomeCtrl',
             controllerAs: 'vm',
             css: 'styles/main.css'
+         })
+         .when('/calculate', {
+            templateUrl: 'views/calculate.html',
+            controller: 'CalculateCtrl',
+            controllerAs: 'vm',
+            css: 'styles/main.css'
          });
-
+   })
+   .run(function($rootScope) {
+      $rootScope.ajaxHostPrefix = 'http://localhost:8091/vladaDemo/rest/';
    });

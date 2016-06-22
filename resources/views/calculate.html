@@ -1,0 +1,39 @@
+<div class="container height-full" id="calculate">
+    <!-- List -->
+    <div class="col-md-7 height-full" id="calculate-list">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="file in vm.files">
+                    <td>{{file.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Options -->
+    <div class="col-md-5 height-full" id="calculate-options">
+        <h4>Selected file: <span id="calculate-options-selected_file">{{'maci'}}</span></h4>
+        <div class="container-fluid row">
+            <div class="col-md-6 row">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Value">
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary">Calculate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid row">
+            <div class="panel panel-default">
+                <div class="panel-heading">Result</div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

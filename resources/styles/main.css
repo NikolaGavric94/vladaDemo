@@ -9,7 +9,6 @@
 =            Home page            =
 =================================*/
 #home {
-  height: 100%;
   padding: 15px 15px 0; }
   #home .home-col-options {
     width: 150px; }
@@ -23,5 +22,27 @@
       padding-top: 8px; }
 
 /*=====  End of Home page  ======*/
+/*=================================
+=            Calculate            =
+=================================*/
+#calculate {
+  padding: 15px 15px 0; }
+  #calculate-options-selected_file {
+    background: #e2e2e2;
+    padding: 5px 9px;
+    border-radius: 4px;
+    color: #777; }
+
+/*=====  End of Calculate  ======*/
+/*===============================
+=            Utiliyu            =
+===============================*/
+.vertical-middle {
+  vertical-align: middle !important; }
+
+.height-full {
+  height: 100%; }
+
+/*=====  End of Utiliyu  ======*/
 
 /*# sourceMappingURL=main.css.map */
