@@ -1,5 +1,6 @@
 package com.demo.vlada.util;
 
+import com.demo.vlada.dto.TextAreaDto;
 import com.demo.vlada.entities.FileE;
 
 public class UtilHelper {
@@ -7,11 +8,11 @@ public class UtilHelper {
 		return new Float(0);
 	}
 	
-	public static String executeTextArea(String text) {
+	public static String executeTextArea(TextAreaDto text) {
 		return "YOLO";
 	}
 	
 	public static String executeFiles(FileE file) {
-		return "YOLO#2";
+		return "YOLO#3";
 	}
 }

@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.demo.vlada.dto.FileEDto;
+import com.demo.vlada.dto.TextAreaDto;
 import com.demo.vlada.entities.FileE;
+import com.demo.vlada.network.Response;
 import com.demo.vlada.services.FileService;
 import com.demo.vlada.util.UtilHelper;
 
@@ -37,61 +39,61 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value="/calculate", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public ResponseEntity<Float> calculateResult(@RequestBody FileEDto fileDto) {
+	public ResponseEntity<Response> calculateResult(@RequestBody FileEDto fileDto) {
 		FileE file = fileService.getFileById(fileDto.getFileId());
-		return new ResponseEntity<Float>(UtilHelper.calculateNetSalary(fileDto.getGrossSalary(), file.getName()), HttpStatus.OK);
+		return new ResponseEntity<Response>(new Response(UtilHelper.calculateNetSalary(fileDto.getGrossSalary(), file.getName())), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/executeTextArea", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public ResponseEntity<String> executeTextArea(@RequestBody String text) {
-		return new ResponseEntity<String>(UtilHelper.executeTextArea(text), HttpStatus.OK);
+	public ResponseEntity<Response> executeTextArea(@RequestBody TextAreaDto text) {
+		return new ResponseEntity<Response>(new Response(UtilHelper.executeTextArea(text)), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/executeFiles", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public ResponseEntity<String> executeFiles(@RequestBody Integer fileId) {
-		FileE file = fileService.getFileById(fileId);
-		return new ResponseEntity<String>(UtilHelper.executeFiles(file), HttpStatus.OK);
+	public ResponseEntity<Response> executeFiles(@RequestBody FileE recFile) {
+		FileE file = fileService.getFileById(recFile.getId());
+		return new ResponseEntity<Response>(new Response(UtilHelper.executeFiles(file)), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/upload")
-	public ResponseEntity<String> uploadFile(@RequestParam(name="file") MultipartFile file) {
+	@RequestMapping(value="/upload", method=RequestMethod.POST)
+	public ResponseEntity<Response> uploadFile(@RequestParam(name="file") MultipartFile file) {
 		if (!file.isEmpty())
             return this.upload(file);
-        return new ResponseEntity<String>("Unable to upload. File is empty.", HttpStatus.EXPECTATION_FAILED);
+        return new ResponseEntity<Response>(new Response("Unable to upload. File is empty."), HttpStatus.EXPECTATION_FAILED);
 	}
 	
 	@RequestMapping(value="/addFile", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public ResponseEntity<String> addFile(@RequestBody FileE file) {
+	public ResponseEntity<Response> addFile(@RequestBody FileE file) {
 		if(!fileService.isFile(file)) {
 			fileService.saveOrUpdate(file);
-			return new ResponseEntity<String>("File successfully added.", HttpStatus.OK);
+			return new ResponseEntity<Response>(new Response("File successfully added."), HttpStatus.OK);
 		}
-		return new ResponseEntity<String>("File already exists with that name!", HttpStatus.IM_USED);
+		return new ResponseEntity<Response>(new Response("File already exists with that name!"), HttpStatus.IM_USED);
 	}
 	
 	@RequestMapping(value="/editFile", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public ResponseEntity<String> editFile(@RequestBody FileE file) {
+	public ResponseEntity<Response> editFile(@RequestBody FileE file) {
 		fileService.saveOrUpdate(file);
-		return new ResponseEntity<String>("File successfully updated.", HttpStatus.OK);
+		return new ResponseEntity<Response>(new Response("File successfully updated."), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/deleteFile", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public ResponseEntity<String> deleteFile(@RequestBody Integer fileId) {
+	public ResponseEntity<Response> deleteFile(@RequestBody Integer fileId) {
 		FileE file = fileService.getFileById(fileId);
 		fileService.remove(file);
-		return new ResponseEntity<String>("File successfully removed.", HttpStatus.OK);
+		return new ResponseEntity<Response>(new Response("File successfully removed."), HttpStatus.OK);
 	}
 	
-	private ResponseEntity<String> upload(MultipartFile file) {
+	private ResponseEntity<Response> upload(MultipartFile file) {
 		try {
             String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
             BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File(env.getProperty("upload.path")+fileName)));
             buffStream.write(bytes);
             buffStream.close();
-            return new ResponseEntity<String>("You have successfully uploaded " + fileName, HttpStatus.OK);
+            return new ResponseEntity<Response>(new Response("You have successfully uploaded " + fileName), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<String>("You failed to upload a file: " + e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+            return new ResponseEntity<Response>(new Response("You failed to upload a file: " + e.getMessage()), HttpStatus.EXPECTATION_FAILED);
         }
 	}
 }
