@@ -21,7 +21,6 @@
       height: 5%;
       padding-top: 8px; }
 
-/*=====  End of Home page  ======*/
 /*=================================
 =            Calculate            =
 =================================*/
@@ -43,7 +42,12 @@
       #calculate-list .calculate-list-item.active td .calculate-list-item-arrow {
         display: block; }
 
-/*=====  End of Calculate  ======*/
+/*==================================
+=            Upload file           =
+==================================*/
+#upload_file-head {
+  margin-bottom: 20px; }
+
 /*===============================
 =            Utiliyu            =
 ===============================*/
