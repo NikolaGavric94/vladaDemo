@@ -55,20 +55,9 @@ public class IndexController {
 	
 	@RequestMapping(value="/upload")
 	public ResponseEntity<String> uploadFile(@RequestParam(name="file") MultipartFile file) {
-		if (!file.isEmpty()) {
-            try {
-                String fileName = file.getOriginalFilename();
-                byte[] bytes = file.getBytes();
-                BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File(env.getProperty("upload.path"))));
-                buffStream.write(bytes);
-                buffStream.close();
-                return new ResponseEntity<String>("You have successfully uploaded " + fileName, HttpStatus.OK);
-            } catch (Exception e) {
-                return new ResponseEntity<String>("You failed to upload a file: " + e.getMessage(), HttpStatus.EXPECTATION_FAILED);
-            }
-        } else {
-            return new ResponseEntity<String>("Unable to upload. File is empty.", HttpStatus.EXPECTATION_FAILED);
-        }
+		if (!file.isEmpty())
+            return this.upload(file);
+        return new ResponseEntity<String>("Unable to upload. File is empty.", HttpStatus.EXPECTATION_FAILED);
 	}
 	
 	@RequestMapping(value="/addFile", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
@@ -91,5 +80,18 @@ public class IndexController {
 		FileE file = fileService.getFileById(fileId);
 		fileService.remove(file);
 		return new ResponseEntity<String>("File successfully removed.", HttpStatus.OK);
+	}
+	
+	private ResponseEntity<String> upload(MultipartFile file) {
+		try {
+            String fileName = file.getOriginalFilename();
+            byte[] bytes = file.getBytes();
+            BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File(env.getProperty("upload.path")+fileName)));
+            buffStream.write(bytes);
+            buffStream.close();
+            return new ResponseEntity<String>("You have successfully uploaded " + fileName, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("You failed to upload a file: " + e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
 	}
 }
