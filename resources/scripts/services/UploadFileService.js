@@ -5,6 +5,13 @@ angular.module('DynFiles')
 
          var ajaxPrefix = $rootScope.ajaxHostPrefix;
 
+         service.addFile = function(fileName, fileUrl) {
+            return $http.post(ajaxPrefix + 'addFile', {
+               name: fileName,
+               fileUrl: fileUrl
+            })
+         }
+
          return service;
       }
    ])

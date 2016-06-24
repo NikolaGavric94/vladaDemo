@@ -94,7 +94,7 @@ public class IndexController {
             BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File("C:/Work/Projects/VladaDemo/"+fileName)));
             buffStream.write(bytes);
             buffStream.close();
-            return new ResponseEntity<Response>(new Response("You have successfully uploaded " + fileName), HttpStatus.OK);
+            return new ResponseEntity<Response>(new Response("You have successfully uploaded " + fileName, "C:/Work/Projects/VladaDemo/"+fileName), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Response>(new Response("You failed to upload a file: " + e.getMessage()), HttpStatus.EXPECTATION_FAILED);
         }
