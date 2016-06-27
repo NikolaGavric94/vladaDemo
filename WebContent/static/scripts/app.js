@@ -30,5 +30,5 @@ angular
          });
    })
    .run(function($rootScope) {
-      $rootScope.ajaxHostPrefix = 'http://localhost:8080/vladaDemo/rest/';
+      $rootScope.ajaxHostPrefix = 'http://localhost:8091/vladaDemo/rest/';
    });
